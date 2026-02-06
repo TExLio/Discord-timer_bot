@@ -5,14 +5,14 @@ from discord.ext import commands, tasks
 from discord import AllowedMentions
 
 # ===== LOAD TOKEN (Railway uses environment variables) =====
-TOKEN = os.getenv("MTQ2OTA3NDk5NzIyOTM5MjEyNQ.GN4ZWS.l1nISIdAwUhSd500wWlHdjCJ-qyzS2nckm1qAs")
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 if TOKEN is None:
     raise RuntimeError("DISCORD_TOKEN is not set in Railway Variables")
 
 # ===== CONFIG (PUT REAL IDS HERE, NO QUOTES) =====
-CHANNEL_ID = 1469057208988860508
-WORLD_BOSS_ROLE_ID = 1469058852736467176
+CHANNEL_ID = 123456789012345678  # <-- your channel ID
+WORLD_BOSS_ROLE_ID = 123456789012345678  # <-- your role ID
 
 # ===== INTENTS =====
 intents = discord.Intents.default()
