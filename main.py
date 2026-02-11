@@ -11,8 +11,8 @@ if TOKEN is None:
     raise RuntimeError("DISCORD_TOKEN is not set in Railway Variables")
 
 # ===== CONFIG (PUT REAL IDS HERE, NO QUOTES) =====
-CHANNEL_ID = 1469057208988860508  # <-- your channel ID
-WORLD_BOSS_ROLE_ID = 1469058852736467176  # <-- your role ID
+CHANNEL_ID = 123456789012345678  # <-- your channel ID
+WORLD_BOSS_ROLE_ID = 987654321012345678  # <-- your role ID
 
 # ===== INTENTS =====
 intents = discord.Intents.default()
