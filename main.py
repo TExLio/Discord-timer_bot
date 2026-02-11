@@ -1,18 +1,17 @@
-# main.py
 import os
+from dotenv import load_dotenv
 import discord
 from discord.ext import commands, tasks
 from discord import AllowedMentions
 
-# ===== LOAD TOKEN (Railway uses environment variables) =====
+# ===== LOAD ENVIRONMENT VARIABLES =====
+load_dotenv()  # Loads variables from .env locally
 TOKEN = os.getenv("DISCORD_TOKEN")
+CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
+WORLD_BOSS_ROLE_ID = int(os.getenv("WORLD_BOSS_ROLE_ID"))
 
 if TOKEN is None:
-    raise RuntimeError("DISCORD_TOKEN is not set in Railway Variables")
-
-# ===== CONFIG (PUT REAL IDS HERE, NO QUOTES) =====
-CHANNEL_ID = 123456789012345678  # <-- your channel ID
-WORLD_BOSS_ROLE_ID = 987654321012345678  # <-- your role ID
+    raise RuntimeError("DISCORD_TOKEN is not set!")
 
 # ===== INTENTS =====
 intents = discord.Intents.default()
@@ -42,7 +41,6 @@ async def ping_loop():
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
-
     if not ping_loop.is_running():
         ping_loop.start()
         print("Timer loop started")
@@ -50,6 +48,7 @@ async def on_ready():
 # ===== COMMANDS =====
 @bot.command()
 async def start(ctx):
+    """Start the world boss ping loop manually"""
     if ping_loop.is_running():
         await ctx.send("⏳ Timer is already running.")
         return
@@ -59,6 +58,7 @@ async def start(ctx):
 
 @bot.command()
 async def stop(ctx):
+    """Stop the world boss ping loop manually"""
     if ping_loop.is_running():
         ping_loop.stop()
         await ctx.send("⏹ Timer stopped.")
